@@ -1,0 +1,185 @@
+%!TeX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+
+\usepackage{homework}
+
+%%-------------------------------正文开始---------------------------%%
+\begin{document}
+
+%%-----------------------封面--------------------%%
+\cover
+
+%%------------------摘要-------------%%
+%\begin{abstract}
+%
+%在此填写摘要内容
+%
+%\end{abstract}
+
+\thispagestyle{empty} % 首页不显示页码
+
+%%--------------------------目录页------------------------%%
+\newpage
+\tableofcontents
+
+%%------------------------正文页从这里开始-------------------%
+\newpage
+
+%%可选择这里也放一个标题
+%\begin{center}
+%    \title{ \Huge \textbf{{标题}}}
+%\end{center}
+
+% ==============
+% =    规则    =
+% ==============
+\section{规则}
+\begin{enumerate}[I]
+    \item 在规定时间内不能提交作业者，零分；
+
+    \item 没有推导过程，只列出答案者，零分；
+
+    \item 格式混乱，无法阅读者，零分；
+
+    \item 不懂就问，不会就学。任何经验都是后天积累的。
+
+    \item 关于LaTeX的一切，国内外的网站都有详尽的教学视频。例：
+    \begin{itemize}
+        \item \href{https://www.bilibili.com/video/BV1Jy4y1p76e/?vd_source=2c0f6624843da61e86c7e8a2b75de875}{Bilibili}
+
+        \item \href{https://www.youtube.com/watch?v=Jp0lPj2-DQA&list=PLHXZ9OQGMqxcWWkx2DMnQmj5os2X5ZR73}{YouTube}
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+% ==============
+% =    习题    =
+% ==============
+\section{习题}
+
+\subsection{物理层的概念}
+\textbf{问：}物理层要解决哪些问题？物理层的主要特点是什么？
+
+\textbf{答：}物理层要解决的主要问题：
+
+（1）物理层要尽可能地屏蔽掉物理设备和传输媒体，通信手段的不同，使数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。
+
+（2）给其服务用户（数据链路层）在一条物理的传输媒体上传送和接收比特流（一般为串行按顺序传输的比特流）的能力，为此，物理层应该解决物理连接的建立、维持和释放问题。
+
+（3）在两个相邻系统之间唯一地标识数据电路
+
+物理层的主要特点：
+
+（1）由于在OSI之前，许多物理规程或协议已经制定出来了，而且在数据通信领域中，这些物理规程已被许多商品化的设备所采用，加之，物理层协议涉及的范围广泛，所以至今没有按OSI的抽象模型制定一套新的物理层协议，而是沿用已存在的物理规程，将物理层确定为描述与传输媒体接口的机械，电气，功能和规程特性。
+
+（2）由于物理连接的方式很多，传输媒体的种类也很多，因此，具体的物理协议相当复杂。
+
+\subsection{物理层的接口}
+\textbf{问：}物理层的接口有哪几个方面的特性？各包含什么内容？
+
+\textbf{答：}（1）机械特性:明接口所用的接线器的形状和尺寸、引线数目和排列、固定和锁定装置等等。
+
+（2）电气特性:指明在接口电缆的各条线上出现的电压的范围。
+
+（3）功能特性:指明某条线上出现的某一电平的电压表示何意。
+
+（4）规程特性:说明对于不同功能的各种可能事件的出现顺序。
+
+\subsection{码元与振幅调制}
+\textbf{问：}假定某信道受奈氏准则限制的最高码元速率为$20,000$码元/秒。如果采用振幅调制，把码元的振幅划分为16个不同等级来传送，那么可以获得多高的数据率（bit/s）？
+
+\textbf{答：}由于振幅调制将码元的振幅划分为 16 个不同等级，因此每个等级可以表示一个不同的状态。16个不同等级代表4个比特为一组，则原来的一个码元可以表示现在的四个码元。并根据奈氏准则，可以得出下列公式：
+\begin{equation}\label{eq:2.3}
+\begin{aligned}
+     C = R \times \log_2 M = 20,000 \times \log_2 16 = 80,000\text{{bit/s}}
+\end{aligned}
+\end{equation}
+
+\subsection{信号衰减}
+\textbf{问：}假定有一种双绞线的衰减是$0.7$dB/km（在1kHz时），若容许有$20$dB的衰减，试问
+\begin{itemize}
+    \item 使用这种双绞线的链路的工作距离有多长？
+
+    \item 如果要使这种双绞线的工作距离增大到$100$km,问应当使衰减降低到多少？
+\end{itemize}
+
+
+\textbf{(1)答：} 已知双绞线的衰减为 0.7dB/km，容许的最大衰减为 20dB。最大工作距离 L 可以通过以下公式计算
+\begin{equation}\label{eq:2.4a}
+\begin{aligned}
+  L = \frac{\text{容许衰减}}{\text{衰减率}} = \frac{20\text{dB}}{0.7\text{dB/km}} = 28.57\text{{km}}
+\end{aligned}
+\end{equation}
+\textbf{(2)答：} 已知容许的最大衰减为 20dB，工作距离提升至100km，衰减率decay应降低至：
+\begin{equation}\label{eq:2.4b}
+\begin{aligned}
+   decay = \frac{\text{容许衰减}}{\text{工作距离}} = \frac{20dB}{100Km} = 0.2\text{{dB/km}}
+\end{aligned}
+\end{equation}
+
+
+\subsection{信道复用}
+\textbf{问：}为什么要使用信道复用技术？常用的信道复用技术有哪些？
+
+\textbf{答：}信道复用技术可以将多个信号通过一个信道传输，从而提高信道的利用率。不同的信道复用技术可以满足不同的通信需求，可以提高传输速率、保证通信质量等。
+
+常用的信道复用技术包括：
+
+1.时分复用（TDM）：将时间划分成若干个时隙，不同的信号在不同的时隙中传输，如电话系统中的数字化交换机。
+
+2.频分复用（FDM）：将频率划分成若干个频带，不同的信号在不同的频带中传输，如广播电视系统。
+
+3.码分复用（CDM）：采用不同的扩频码将不同的信号进行编码，使它们在同一频带上传输，如CDMA系统。
+
+4.波分复用（WDM）：利用不同的波长将不同的信号分离，使它们在同一光纤上传输，如光通信系统。
+
+\subsection{CDMA}
+\textbf{问：}共有$4$个站进行码分多址CDMA通信，四个站的码片序列如\autoref{tab:cdma}所示。
+现收到这样的码片序列：$(-1, +1, -3, +1, -1, -3, +1, +1)$。
+问
+\begin{itemize}
+    \item 哪个站发送数据了？
+    
+    \item 发送数据的站发送的是$1$还是$0$？
+\end{itemize}
+
+\newpage
+\begin{table}[t!]
+    \centering
+    \begin{tabular}{cc}
+       A: $(-1, -1, -1, +1, +1, -1, +1, +1)$  & B: $(-1, -1, +1, -1, +1, +1, +1, -1)$ \\
+       C: $(-1, +1, -1, +1, +1, +1, -1, -1)$  & D: $(-1, +1, -1, -1, -1, -1, +1, -1)$
+    \end{tabular}
+    \caption{码片序列}
+    \label{tab:cdma}
+\end{table}
+
+\textbf{答：}A和D站发送1，B发送0，C未发送数据
+\begin{equation}\label{eq:2.6a}
+\begin{aligned}
+    A: \frac{(-1) \times (-1) + (-1) \times 1 + (-1) \times (-3) + 1 \times 1 +1 \times (-1) + (-1) \times (-3) + 1 \times 1 + 1 \times 1 }{8} = 1
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:2.6b}
+\begin{aligned}
+    B: \frac{(-1) \times (-1) + (-1) \times 1 + 1 \times (-3) + (-1) \times 1 +1 \times (-1) + 1 \times (-3) + 1 \times 1 + (-1) \times 1 }{8} = -1
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:2.6c}
+\begin{aligned}
+    C: \frac{(-1) \times (-1) + 1 \times 1 + (-1) \times (-3) + 1 \times 1 +1 \times (-1) + 1 \times (-3) + -(1) \times 1 + (-1) \times 1 }{8} = 0
+\end{aligned}
+\end{equation}
+
+\begin{equation}\label{eq:2.6d}
+\begin{aligned}
+    D:\frac{(-1) \times (-1) + 1 \times 1 + (-1) \times (-3) + (-1) \times 1 + (-1) \times (-1) + (-1) \times (-3) + 1 \times 1 + (-1) \times 1}{8}\\ =1 
+\end{aligned}
+\end{equation}
+
+
+
+\end{document}
