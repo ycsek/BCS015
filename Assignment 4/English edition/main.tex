@@ -1,0 +1,96 @@
+% !TEX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{CityUhomework}
+
+%%------------------Beginning of the text-----------------%%
+\begin{document}
+
+%%-----------------Cover------------------%%
+\cover
+\thispagestyle{empty}% Home page does not show page numbers
+
+
+%%-----------------Catalog-------------------%%
+\newpage
+\tableofcontents
+
+%%-----------------Main text starts here-------------------%%
+\newpage
+
+\section{习题}
+
+\subsection{IP地址表示}
+\textbf{问：}
+IP地址如何表示？
+
+\textbf{答：}
+对主机和路由器IP地址是32位的二进制代码，其第一个字段是网络号，第二个字段是主机号
+\begin{equation}\label{eq:a}
+    \centering
+    IP\text{地址} ::={\{<\text{网络号}>,<\text{主机号}>\}}
+\end{equation}
+分类地址包括：
+\begin{itemize}
+    \item A类地址：网络号字段为1字节，最前面的1位是0
+    \item B类地址：网络号字段为2字节，最前面的2位是10
+    \item C类地址：网络号字段为3字节，最前面的3位是110
+    \item D类地址：多播地址，最前面的4位是1110
+    \item E类地址：保留地址，最前面的4位是1111
+\end{itemize}
+此外，无分类地址由网络前缀和主机号组成，网络前缀的位数并不固定，无分类地址可表示为：
+\begin{equation}\label{eq:b}
+    \centering
+    IP\text{地址} ::={\{<\text{网络前缀}>,<\text{主机号}>\}}
+\end{equation}
+
+\subsection{IP地址特点}
+\textbf{问：}
+IP地址的主要特点是什么？
+
+\textbf{答：}
+\begin{itemize}
+    \item 每一个IP地址都是由网络前缀和主机号组成两部分组成，IP地址是一种分等级的地址结构。
+    \item IP地址是标志一台主机或路由器和一条链路的接口，当一台主机同时连接到两个网络上时，该主机必须同时具有两个相应的IP地址，其网络前缀必须是不同的。
+    \item 按照互连网的观点，一个网络或子网是指具有相同网络前缀的主机的集合，因此，用转发器或者交换机连接起来的若干局域网仍是一个网络，具有不同网络前缀的局域网必须使用路由器进行互联。
+    \item 在IP地址中，所有分配到网络前缀的网络都是平等的。
+\end{itemize}
+
+\subsection{IP地址 vs. MAC地址}
+\textbf{问：}
+试说明IP地址与MAC地址的区别。为什么要使用这两种不同的地址？
+
+\textbf{答：}
+区别：MAC地址是数据链路层使用的地址，是物理地址；而IP地址是网络层和以上各层使用的地址，是逻辑地址。
+
+MAC地址已经固化在网卡的ROM上，MAC地址是不可以更改的，因此要是不同网络之间相互通信就必须进行MAC地址转换，但主机难以完成这项任务。接入互连网的主机只需要有统一的IP地址就可以实现相互通信，所以使用IP地址去连接更简单，当需要把IP地址转换为MAC地址时，可以通过ARP协议实现，这个过程由计算机软件自动执行。
+
+\subsection{IP数据报首部检验-1}
+\textbf{问：}
+IP数据报中的首部检验和并不检验数据报中的数据。这样做的最大好处是什么？
+坏处是什么？
+
+\textbf{答：}
+\begin{itemize}
+    \item 好处：不检验数据报中的数据可以加快检验过程，提高传输效率。并且首部检验可以确保数据在传输过程中未被损坏，以便路由器可以准确的处理数据报。
+    \item 坏处：数据部分如果出现错误不会被发现，到达终点后目的主机的IP也不会检验数据部分是否正确，只有运输层的TCP才会检验数据是否正确。
+\end{itemize}
+
+\subsection{IP数据报首部检验-2}
+\textbf{问：}
+当某个路由器发现一个IP 数据报的首部检验和有差错时，为什么采取丢弃的办
+法而不是要求源站重传此数据报？计算首部检验和为什么不采用CRC 检验码？
+
+\textbf{答：}
+IP首部中的地址也可能是错误的，错误的地址重新传输数据报仍然是错误的，因此采用丢弃的办法效率更高；不采用CRC检验码是因为CRC检验计算复杂，检验时间长，不采用CRC检验可以减少路由器的检验时间。
+
+\subsection{最大传输单元}
+\textbf{问：}
+什么是最大传送单元MTU? 它和IP数据报首部中的哪个字段有关系？
+
+\textbf{答：}
+\begin{itemize}
+    \item 在IP层下面的每一种数据链路层协议都规定了一个数据帧中的数据字段的最大长度，称为MTU
+    \item MTU和IP数据报首部中的长度有关系，当IP数据报封装成帧时，数据报的总长度不能超过下面的数据链路层的MTU值，MTU是IP数据报首部中的总长度字段的上限值。
+\end{itemize}
+
+\end{document}
