@@ -1,0 +1,206 @@
+% !TEX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{CityUhomework}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+%%------------------Beginning of the text-----------------%%
+\begin{document}
+
+%%-----------------Cover------------------%%
+\cover
+\thispagestyle{empty}% Home page does not show page numbers
+
+
+%%-----------------Catalog-------------------%%
+\newpage
+\tableofcontents
+
+%%-----------------Main text starts here-------------------%%
+\newpage
+
+\section{习题}
+
+\subsection{ARP-1}
+\textbf{问：}
+\begin{enumerate}[label=\Roman*,leftmargin=2.2\parindent]
+    \item 试解释为什么ARP高速缓存每存入一个项目就要设置10$\sim$20分钟的超时计时器。这个时间设置得太大或太小会出现什么问题？
+
+    \item 至少举出两种不需要发送ARP 请求分组的情况（即不需要请求将某个目的IP地址解析为相应的MAC地址）。
+\end{enumerate}
+
+\textbf{答：}
+\begin{enumerate}[label=\Roman*,leftmargin=2.2\parindent]
+    \item 根据ARP协议，我们可以将已知的IP地址转换为对应的MAC地址，当网络中的IP地址与MAC地址的映射关系发生变化时ARP cache中就会发生更改。若时间设置得太大，当网络中的IP地址与MAC地址的映射关系发生变化时ARP cache中的信息就会过时，导致无法通信。若时间设置得太小，ARP cache中的信息就会频繁更新，导致网络负载过大。
+
+    \item 至少有两种不需要发送ARP 请求分组的情况：
+    \begin{enumerate}[label=(\alph*)]
+        \item 源主机的ARP cache中已经存有目标IP地址对应的MAC地址，那么就不需要再发送ARP请求。缓存中的信息可以直接用于数据包的发送。
+        \item 源主机和目的主机使用点对点连接，不需要经过交换机或路由器，那么就不需要发送ARP请求。
+        \item 源主机使用广播分组时，会发送至所有主机，不需要知道特定的MAC地址，所以不需要发送ARP请求。
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{ARP-2}
+\textbf{问：}
+主机A发送IP数据报给主机B，途中经过了5 个路由器。试问在IP数据报的发送过程中总共使用了几次ARP?
+
+\textbf{答：}
+6次，每经过一个路由器转发IP数据报就会使用一次ARP，主机发送数据报时会使用一次。
+
+
+\newpage
+\subsection{路由器转发表}
+\textbf{问：}
+设某路由器建立了转发表\ref{tab:转发表}：
+\begin{table}[!ht]
+    \centering
+    \renewcommand{\arraystretch}{1}
+    \setlength{\tabcolsep}{30pt}
+    \begin{tabular}{l|r}
+    \toprule
+    前缀匹配    &   下一跳\\
+    \midrule
+    192.4.153.0/26  &   $R_3$\\
+    128.96.39.0/25  &   接口$m_0$\\
+    128.96.39.128/25    &   接口$m_1$\\
+    128.96.40.0 /25 &   $R_2$\\
+    192.4.153.0/26  &   $R_3$\\
+    *（默认）   &   $R_4$\\
+    \bottomrule
+    \end{tabular}
+    \caption{转发表}
+    \label{tab:转发表}
+\end{table}
+
+现共收到5个分组，其目的地址分别为：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2\parindent]
+    \item 128.96.39.10
+    \item 128.96.40.12
+    \item 128.96.40.151
+    \item 192.4.153.17
+    \item 192.4.153.90
+\end{enumerate}
+
+试分别计算其下一跳。
+
+\textbf{答：}
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2\parindent]
+    \item 与转发表第二行匹配，下一跳为接口$m_0$
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+            目的地址 & 128.96.39.10\\
+            32位IP地址 & 10000000.01100000.00100111.00001010\\ 
+            转发表第二行子网掩码 & 11111111.11111111.11111111.10000000\\
+            与运算 & 10000000.01100000.00100111.00000000\\
+            IP & 128.96.39.0\\
+            \bottomrule
+        \end{tabular}
+        \caption{128.96.39.10}\label{128.96.39.10}
+    \end{table}
+
+    \newpage
+    \item 与转发表第四行匹配，下一跳为$R_2$
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+            目的地址 & 128.96.40.12\\
+            32位IP地址 & 10000000.01100000.00101000.00001100\\
+            转发表第四行子网掩码 & 11111111.11111111.11111111.10000000\\
+            与运算 & 10000000.01100000.00101000.00000000\\
+            IP & 128.96.40\\
+            \bottomrule
+        \end{tabular}
+        \caption{128.96.40.12}\label{128.96.40.12}
+    \end{table}
+
+    \item 检查转发表第四行，结果不匹配，下一跳为默认接口$R_4$
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+            目的地址 & 128.96.40.151\\
+            32位IP地址 & 10000000.01100000.00101000.10010111\\
+            转发表第四行子网掩码 & 11111111.11111111.11111111.10000000\\
+            与运算 & 10000000.01100000.00101000.10000000\\
+            IP & 128.96.40.128\\
+            \bottomrule
+        \end{tabular}
+        \caption{128.96.10.151}\label{128.96.40.151}
+    \end{table}
+
+    \item 与转发表第一行匹配，下一跳为$R_3$
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+            目的地址 & 192.4.153.17\\
+            32位IP地址 & 11000000.00000100.10011001.00010001\\
+            转发表第一行子网掩码 & 11111111.11111111.11111111.11000000\\
+            与运算 & 11000000.00000100.10011001.00000000\\
+            IP & 192.4.153.0\\
+            \bottomrule
+        \end{tabular}
+        \caption{192.4.153.17}\label{192.4.153.17}
+    \end{table}
+
+    \item 检查转发表第一行，结果不匹配，下一跳为默认接口$R_4$
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c}
+            \toprule
+            目的地址 & 192.4.153.90\\
+            32位IP地址 & 11000000.00000100.10011001.01011010\\
+            转发表第一行子网掩码 & 11111111.11111111.11111111.11000000 \\
+            与运算 & 11000000.00000100.10011001.01000000\\
+            IP & 192.4.153.64\\
+            \bottomrule
+        \end{tabular}
+        \caption{192.4.153.90}\label{192.4.153.90}
+    \end{table}
+
+\end{enumerate}
+
+\subsection{最大/最小IP}
+\textbf{问：}
+某单位分配到一个地址块$129.250/16$。该单位有$4000$台计算机，平均分布在$16$个不同的地点。试给每一个地点分配一个地址块，并算出每个地址块中IP地址的最小值和最大值。
+
+\textbf{答：}
+4000台计算机平均分布在16个地点，每个地点有$4000/16=250$台计算机。$2^8 = 256$所以主机号需要8位即可，网络前缀就为24位。16个地点，需要16个地址块，每个地址块有$2^8=256$个IP地址。所以每个地址块的地址范围如下：
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c}
+        \toprule
+        地址块 & IP地址范围\\
+        \midrule
+        129.250.1/24 & 129.250.1.0 - 129.205.1.255\\
+        129.250.2/24 & 129.250.2.0 - 129.250.2.255\\
+        129.250.3/24 & 129.250.3.0 - 129.250.3.255\\
+        129.250.4/24 & 129.250.4.0 - 129.250.4.255\\
+        129.250.5/24 & 129.250.5.0 - 129.250.5.255\\
+        129.250.6/24 & 129.250.6.0 - 129.250.6.255\\
+        \vdots & \vdots\\
+        129.250.15/24 & 129.250.15.0 - 129.250.15.255\\
+        129.250.16/24 & 129.250.16.0 - 129.250.16.255\\
+        \bottomrule
+    \end{tabular}
+    \caption{IP地址范围}\label{IP地址范围}
+\end{table}
+
+
+\subsection{数据报}
+\textbf{问：}
+一个数据报长度为$4000$字节（固定首部长度）。现在经过一个网络传送，但此网络能够传送的最大数据长度为$1500$字节。试问应当划分为几个短些的数据报片？各数据报片的数据字段长度、片偏移字段和MF标志应为何数值？
+
+\textbf{答：}
+IP首部长度固定为20字节，则数据部分的长度为$4000-20=3980B$, 由于网络能够传送的最大数据长度为$1500$字节，所以每个数据报片的数据字段长度为$1500-20=1480B$。划分出一个数据报片为$3980-1480=2500B$,因其长度大于MTU所以还应再划分，即$2500-1480=1020B$。共划分3个数据报片，每个数据报片的数据字段的长度分别为：1480B, 1480B, 1020B。
+
+片偏移字段分别为：$0$, $\frac{1480}{8}=185$, $\frac{2 \times 1480}{8} =370$。MF表示分片后是否还有数据报，1表示还有数据报，0表示已是最后一个数据报片。所以，MF标志分别为：1, 1, 0。
+
+\end{document}
