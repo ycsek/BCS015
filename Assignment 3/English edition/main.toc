@@ -1,9 +1,0 @@
-\contentsline {section}{\numberline {1}规则}{3}{section.1}%
-\contentsline {section}{\numberline {2}习题}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}CRC检验}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}PPP帧}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}PPP的同步传输}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}CSMA/CD协议}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}集线器\&交换机}{5}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}交换机\&虚拟局域网}{6}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}交换机\&交换表}{6}{subsection.2.7}%
