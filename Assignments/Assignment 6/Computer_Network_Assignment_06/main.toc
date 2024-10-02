@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}规则}{3}{section.1}%
+\contentsline {section}{\numberline {2}习题}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}地址前缀匹配}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}掩码与网络前缀}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}路由表更新}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}IPv4地址转换}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}IPv4过渡至IPv6}{5}{subsection.2.5}%

@@ -1,0 +1,129 @@
+% !TEX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{CityUhomework}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+%%------------------Beginning of the text-----------------%%
+\begin{document}
+
+%%-----------------Cover------------------%%
+\cover
+\thispagestyle{empty}% Home page does not show page numbers
+
+
+%%-----------------Catalog-------------------%%
+\newpage
+\tableofcontents
+
+%%-----------------Main text starts here-------------------%%
+\newpage
+\section{习题}
+
+\subsection{地址前缀匹配}
+\textbf{问：}
+以下地址前缀中的哪一个地址与$2.52.90.140$ 匹配？请说明理由。
+\begin{enumerate}[label=\Roman*),leftmargin=2.2\parindent]
+    \item 0/4; 
+    \item 32/4; 
+    \item 4/6; 
+    \item 80/4。
+\end{enumerate}
+
+\textbf{答：}
+$2.52.90.140$的二进制表示为：00000010.00110100.01011010.10001100
+\begin{enumerate}
+    \item 0/4 的二进制表示为：00000000.00000000.00000000.00000000
+    \item 32/4 的二进制表示为：00100000.00000000.00000000.00000000
+    \item 4/6 的二进制表示为：00000100.00000000.00000000.00000000
+    \item 80/4 的二进制表示为：01010000.00000000.00000000.00000000
+\end{enumerate}
+因此，只有0/4的前缀与$2.52.90.140$的前缀的前四位相匹配
+
+
+\subsection{掩码与网络前缀}
+\textbf{问：}
+与下列掩码相对应的网络前缀各有多少位？
+\begin{enumerate}[label=\Roman*),leftmargin=2.2\parindent]
+    \item $192.0.0.0$;
+    \item $240.0.0.0$;
+    \item $255.224.0.0$;
+    \item $255.255.255.252$。 
+\end{enumerate}
+
+\textbf{答：}
+子网掩码中1的个数即为网络前缀的位数。
+\begin{enumerate}
+    \item $192.0.0.0$ 的二进制表示为：11000000.00000000.00000000.00000000， 所以其网络前缀为2位
+    \item $240.0.0$ 的二进制表示为：11110000.00000000.00000000.00000000， 所以其网络前缀为4位
+    \item $255.224.0.0$ 的二进制表示为：11111111.11100000.00000000.00000000， 所以其网络前缀为11位
+    \item $255.255.255.252$ 的二进制表示为：11111111.11111111.11111111.11111100， 所以其网络前缀为30位
+\end{enumerate}
+
+\subsection{路由表更新}
+\textbf{问：}
+假定网络中的路由器B的路由表如表\ref{tab:router_b}所示:
+\begin{table}[h!]
+    \centering
+    \caption{路由器B的路由表}
+    \begin{tabular}{c|c|c}
+    \toprule
+    目的网络 & 距离 & 下一跳路由器\\
+    \midrule
+    $N_1$ & $7$ & $A$\\
+    $N_2$ & $2$ & $C$\\
+    $N_6$ & $8$ & $F$\\
+    $N_8$ & $4$ & $E$\\
+    $N_9$ & $4$ & $F$\\
+    \bottomrule
+    \end{tabular}
+    \label{tab:router_b}
+\end{table}
+
+现在B收到从C发来的路由信息，如表\ref{tab:updates}所示：
+\begin{table}[h!]
+    \centering
+    \caption{路由器C至路由器B的更新信息}
+    \begin{tabular}{c|c}
+    \toprule
+    目的网络 & 距离\\
+    \midrule
+    $N_2$ & $4$\\
+    $N_3$ & $8$\\
+    $N_6$ & $4$\\
+    $N_8$ & $3$\\
+    $N_9$ & $5$\\
+    \bottomrule
+    \end{tabular}
+    \label{tab:updates}
+\end{table}
+
+试求出路由器B更新后的路由表（详细说明每一个步骤）。
+
+\textbf{答：}
+TODO
+
+\subsection{IPv4地址转换}
+\textbf{问：}
+试把下列IPv4 地址从二进制记法转换为点分十进制记法：
+\begin{enumerate}[label=\Roman*)]
+    \item $10000001 \ 00001011 \ 00001011 \ 11101111$
+    \item $11000001 \ 10000011 \ 00011011 \ 11111111$
+    \item $11100111 \ 11011011 \ 10001011 \ 01101111$
+    \item $11111001 \ 10011011 \ 11111011 \ 00001111$
+\end{enumerate}
+
+\textbf{答：}
+TODO
+
+\subsection{IPv4过渡至IPv6}
+\textbf{问：}
+从IPv4过渡到IPv6的方法有哪些？
+
+\textbf{答：}
+TODO
+
+\end{document}
