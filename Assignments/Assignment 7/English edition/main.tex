@@ -1,0 +1,90 @@
+% !TEX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{CityUhomework}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+%%------------------Beginning of the text-----------------%%
+\begin{document}
+
+%%-----------------Cover------------------%%
+\cover
+\thispagestyle{empty}% Home page does not show page numbers
+
+
+%%-----------------Catalog-------------------%%
+\newpage
+\tableofcontents
+
+%%-----------------Main text starts here-------------------%%
+\newpage
+\section{习题}
+
+\section{习题}
+
+\subsection{UDP \& IP - 1}
+\textbf{问：}
+某个应用进程使用运输层的用户数据报UDP, 然后继续向下交给IP层后，又封
+装成IP数据报。既然都是数据报，是否可以跳过UDP而直接交给IP层？哪些
+功能UDP提供了但IP没有提供？
+
+\textbf{答：}
+TODO
+
+\subsection{UDP \& IP - 2}
+\textbf{问：}
+一个UDP 用户数据报的数据字段为8192 字节。在链路层要使用以太网来传送。
+试问应当划分为几个IP 数据报片？说明每一个IP 数据报片的数据字段长度和片
+偏移字段的值。
+
+\textbf{答：}
+TODO
+
+\subsection{停止等待协议}
+\textbf{问：}
+在停止等待协议中如果不使用编号是否可行？为什么？
+
+\textbf{答：}
+TODO
+
+\subsection{连续ARQ协议}
+\textbf{问：}
+假定使用连续ARQ 协议，发送窗口大小是$3$, 而序号范围是$[0, 15]$，而传输媒体保证在接收方能够按序收到分组。在某一时刻，在接收方，下一个期望收到的
+序号是$5$。试问：
+\begin{enumerate}[label=\Roman*),leftmargin=2.2\parindent]
+    \item 在发送方的发送窗口中可能出现的序号组合有哪些？
+    \item 接收方已经发送出的、但仍滞留在网络中（即还未到达发送方）的确认分组可能有哪些？说明这些确认分组是用来确认哪些序号的分组。
+\end{enumerate}
+
+\textbf{答：}
+TODO
+
+\subsection{TCP报文}
+\textbf{问：}
+主机A向主机B连续发送了两个TCP报文段，其序号分别是70和100。试问：
+\begin{enumerate}[label=\Roman*),leftmargin=2.2\parindent]
+    \item 第一个报文段携带了多少字节的数据？
+    \item 主机B收到第一个报文段后发回的确认中的确认号应当是多少？
+    \item 如果B收到第二个报文段后发回的确认中的确认号是180，试问A发送的第二个报文段中的数据有多少字节？
+    \item 如果A发送的第一个报文段丢失了，但第二个报文段到达了B。B在第二个报文段到达后向A发送确认。试问这个确认号应为多少？
+\end{enumerate}
+
+\textbf{答：}
+TODO
+
+\subsection{TCP信道}
+\textbf{问：}
+通信信道带宽为$1$Gbit/s, 端到端传播时延为10ms。TCP的发送窗口为$65535$字节。试问：
+\begin{enumerate}[label=\Roman*),leftmargin=2.2\parindent]
+    \item 可能达到的最大吞吐量是多少？
+    \item 信道的利用率是多少？
+\end{enumerate}
+
+\textbf{答：}
+TODO
+
+
+\end{document}
